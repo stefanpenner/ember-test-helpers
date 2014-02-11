@@ -11,11 +11,13 @@ we should optimize for testability, sharing, and iteration.
 structure:
 ----------
 
+```sh
 /dist/* transpiled output
 /lib/*
 /tests/unit/
 /tests/integration/
 /tests/acceptance/ <-- likely an entire EAK app and full testing with a real app
+```
 
 Ideas:
 ------
