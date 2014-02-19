@@ -1,0 +1,11 @@
+* Determine how to resovle modules (i.e. 'appkit/tests/helpers/resolver')
+  - Have an eak app as a 'support' resource in test directory
+  - consider the todo app
+
+* Better understanding of module-for
+
+* setup / teardow seem QUnit specific. is moduleFor only for QUnit?
+
+* start-app: how to inject App and Router without explicit require
+
+
