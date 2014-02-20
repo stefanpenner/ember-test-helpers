@@ -1,12 +1,13 @@
+"use strict";
 var __testing_context__;
 
-import resolver from './resolver';
+var resolver = require("./resolver")["default"];
 
 function defaultSubject(factory, options) {
   return factory.create(options);
 }
 
-export function moduleFor(fullName, description, callbacks, delegate) {
+function moduleFor(fullName, description, callbacks, delegate) {
   callbacks = callbacks || { };
 
   var needs = [fullName].concat(callbacks.needs || []);
@@ -58,7 +59,7 @@ export function moduleFor(fullName, description, callbacks, delegate) {
   module(description || fullName, _callbacks);
 }
 
-// allow arbitrary named factories, like rspec let
+exports.moduleFor = moduleFor;// allow arbitrary named factories, like rspec let
 function buildContextVariables(context) {
   var cache = { };
   var callbacks = context.__setup_properties__;
@@ -81,7 +82,7 @@ function buildContextVariables(context) {
   });
 }
 
-export function test(testName, callback) {
+function test(testName, callback) {
   var context = __testing_context__; // save refence
 
   function wrapper() {
@@ -100,7 +101,7 @@ export function test(testName, callback) {
   QUnit.test(testName, wrapper);
 }
 
-export function moduleForModel(name, description, callbacks) {
+exports.test = test;function moduleForModel(name, description, callbacks) {
   moduleFor('model:' + name, description, callbacks, function(container, context) {
     // custom model specific awesomeness
     container.register('store:main', DS.Store);
@@ -120,7 +121,7 @@ export function moduleForModel(name, description, callbacks) {
   });
 }
 
-export function moduleForComponent(name, description, callbacks) {
+exports.moduleForModel = moduleForModel;function moduleForComponent(name, description, callbacks) {
   moduleFor('component:' + name, description, callbacks, function(container, context) {
     var templateName = 'template:components/' + name;
 
@@ -141,3 +142,4 @@ export function moduleForComponent(name, description, callbacks) {
   });
 }
 
+exports.moduleForComponent = moduleForComponent;

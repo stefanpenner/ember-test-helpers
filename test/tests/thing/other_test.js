@@ -1,8 +1,8 @@
 /*global describe, specify, it, assert */
-import Other from 'thing/other';
+//import Other from 'thing/other';
 
-describe('Other', function() {
-  it('exists', function(){
-    assert(Other);
-  });
-});
+// describe('Other', function() {
+//   it('exists', function(){
+//     assert(Other);
+//   });
+// });

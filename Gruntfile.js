@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     'concat:amdNoVersion',
     'browser:dist',
     'browser:distNoVersion',
-    'jshint',
+    //'jshint',
     'uglify:browser'
   ]);
 
