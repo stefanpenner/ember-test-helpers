@@ -1,6 +1,3 @@
 module.exports = {
-  build: [
-    'tmp',
-    'dist'
-  ]
+  build: ['tmp', 'dist']
 };

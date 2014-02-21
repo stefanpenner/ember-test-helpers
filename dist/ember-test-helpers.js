@@ -1,5 +1,5 @@
-(function(global) {
-var define, require;
+(function(globals, EmberTestHelpers) {
+var define, requireModule, require, requirejs;
 
 (function() {
   var registry = {}, seen = {};
@@ -8,13 +8,13 @@ var define, require;
     registry[name] = { deps: deps, callback: callback };
   };
 
-  require = function(name) {
+  requirejs = require = requireModule = function(name) {
 
     if (seen[name]) { return seen[name]; }
     seen[name] = {};
 
     if (!registry[name]) {
-      throw new Error('Could not find module ' + name);
+      throw new Error("Could not find module " + name);
     }
 
     var mod = registry[name],
@@ -27,7 +27,7 @@ var define, require;
       if (deps[i] === 'exports') {
         reified.push(exports = {});
       } else {
-        reified.push(require(resolve(deps[i])));
+        reified.push(requireModule(resolve(deps[i])));
       }
     }
 
@@ -50,7 +50,6 @@ var define, require;
       return parentBase.join("/");
     }
   };
-  require.entries = registry;
 })();
 
 define("ember-test-helpers/isolated-container", 
@@ -283,13 +282,12 @@ define("ember-test-helpers",
     "use strict";
     var isolatedContainer = __dependency1__["default"];
     var moduleFor = __dependency2__["default"];
-    //import startApp from './ember-test-helpers/start-app';
 
-    __exports__["default"] = {
-      isolatedContainer: isolatedContainer,
-      moduleFor: moduleFor
-     // startApp: startApp
-    };
+     __exports__["default"] = {
+       isolatedContainer: isolatedContainer,
+       moduleFor: moduleFor
+     };
   });
-global.Ember-test-helpers = require('ember-test-helpers');
-}(window));
+define("ember-test-helpers", [], function() { return EmberTestHelpers;});
+window.EmberTestHelpers = requireModule('ember-test-helpers');
+}(window, window.EmberTestHelpers));

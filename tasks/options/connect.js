@@ -18,6 +18,5 @@ module.exports = {
         connect.static(options.base)
       ];
     }
-
   }
 };

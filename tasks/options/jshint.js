@@ -1,8 +1,9 @@
 module.exports = {
   options: {
-    'jshintrc': '.jshintrc'
+    'jshintrc': '.jshintrc',
+    'force': true
   },
   output: {
-    src: ['dist/<%= pkg.name %>-<%= pkg.version %>.js']
+    src: ['dist/<%= pkg.name %>.js']
   }
 };

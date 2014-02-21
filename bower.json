@@ -3,12 +3,12 @@
   "dependencies": {
     "handlebars": "~1.1.2",
     "jquery": "~1.9.1",
-    "qunit": "~1.12.0",
     "ember": "~1.4.0-beta.2"
   },
   "devDependencies": {
     "ic-ajax": "~0.3.0",
-    "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master"
+    "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
+    "qunit": "~1.12.0"
   },
   "resolutions": {
     "ember": "~1.4.0-beta.2"

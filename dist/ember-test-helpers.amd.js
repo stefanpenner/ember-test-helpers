@@ -228,11 +228,9 @@ define("ember-test-helpers",
     "use strict";
     var isolatedContainer = __dependency1__["default"];
     var moduleFor = __dependency2__["default"];
-    //import startApp from './ember-test-helpers/start-app';
 
-    __exports__["default"] = {
-      isolatedContainer: isolatedContainer,
-      moduleFor: moduleFor
-     // startApp: startApp
-    };
+     __exports__["default"] = {
+       isolatedContainer: isolatedContainer,
+       moduleFor: moduleFor
+     };
   });

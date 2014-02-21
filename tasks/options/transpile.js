@@ -6,7 +6,7 @@ function nameFor(path) {
     result = path;
   }
 
-  return path;
+  return result;
 }
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
     files: [{
       expand: true,
       cwd: 'lib/',
-      src: ['<%= pkg.name %>/**/*.js'],
+      src: ['<%= pkg.name %>/*.js'],
       dest: 'dist/commonjs/',
       ext: '.js'
     },
@@ -41,24 +41,20 @@ module.exports = {
   testsAmd: {
     moduleName: nameFor,
     type: 'amd',
-    expand: true,
-    src: [
-      'test/test_helpers.js',
-      'test/tests.js',
-      'test/**/*_test.js'
-    ],
-    dest: 'tmp/tests/amd'
+
+    files: [{
+      expand: true,
+      cwd: 'test/',
+      src: ['**/test_helpers.js', '**/*_test.js'],
+      dest: 'tmp/',
+      ext: '.amd.js'
+    }]
   },
 
   testsCommonjs: {
     moduleName: nameFor,
-    expand: true,
     type: 'cjs',
-    src: [
-      'test/test_helpers.js',
-      'test/tests.js',
-      'test/**/*_test.js'
-    ],
-    dest: 'tmp/tests/cjs'
+    src: ['test/test_helpers.js', 'test/tests.js', 'test/tests/**/*_test.js'],
+    dest: 'tmp/tests.cjs.js'
   }
 };

@@ -1,4 +1,4 @@
-var define, require;
+var define, requireModule, require, requirejs;
 
 (function() {
   var registry = {}, seen = {};
@@ -7,13 +7,13 @@ var define, require;
     registry[name] = { deps: deps, callback: callback };
   };
 
-  require = function(name) {
+  requirejs = require = requireModule = function(name) {
 
     if (seen[name]) { return seen[name]; }
     seen[name] = {};
 
     if (!registry[name]) {
-      throw new Error('Could not find module ' + name);
+      throw new Error("Could not find module " + name);
     }
 
     var mod = registry[name],
@@ -26,7 +26,7 @@ var define, require;
       if (deps[i] === 'exports') {
         reified.push(exports = {});
       } else {
-        reified.push(require(resolve(deps[i])));
+        reified.push(requireModule(resolve(deps[i])));
       }
     }
 
@@ -49,5 +49,4 @@ var define, require;
       return parentBase.join("/");
     }
   };
-  require.entries = registry;
 })();
