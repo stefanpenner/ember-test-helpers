@@ -27,7 +27,8 @@
   "scripts": {
     "test": "grunt test",
     "lint": "jshint lib",
-    "prepublish": "grunt build"
+    "prepublish": "grunt build",
+    "postinstall": "bower install"
   },
   "keywords": [
     "test",
