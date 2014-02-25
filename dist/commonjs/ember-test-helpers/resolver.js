@@ -1,5 +1,5 @@
 "use strict";
-var Resolver = require("resolver")["default"];
+var Resolver = require("ember/resolver")["default"];
 
 var resolver = Resolver.create();
 

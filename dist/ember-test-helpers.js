@@ -226,7 +226,7 @@ define("ember-test-helpers/module-for",
     __exports__.moduleForComponent = moduleForComponent;
   });
 define("ember-test-helpers/resolver", 
-  ["resolver","exports"],
+  ["ember/resolver","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
     var Resolver = __dependency1__["default"];
