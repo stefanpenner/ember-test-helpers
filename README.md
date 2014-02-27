@@ -1,3 +1,14 @@
+NOTICE:
+=======
+
+this spike has been taking to production readiness by @rpflorence, check it out @ https://github.com/rpflorence/ember-qunit
+
+
+
+
+
+
+
 ember-test-helpers
 ==================
 
