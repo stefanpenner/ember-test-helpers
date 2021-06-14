@@ -2,6 +2,8 @@
 import { _backburner } from '@ember/runloop';
 import Ember from 'ember';
 
+import EmberApplication from '@ember/application';
+
 import { nextTick } from './-utils';
 import waitUntil from './wait-until';
 import { hasPendingTransitions } from './setup-application-context';
@@ -29,6 +31,26 @@ const _internalPendingRequests = (() => {
 
   return () => 0;
 })();
+
+if (typeof jQuery !== 'undefined' && _internalPendingRequests) {
+  // This exists to ensure that the AJAX listeners setup by Ember itself
+  // (which as of 2.17 are not properly torn down) get cleared and released
+  // when the application is destroyed. Without this, any AJAX requests
+  // that happen _between_ acceptance tests will always share
+  // `pendingRequests`.
+  //
+  // This can be removed once Ember 4.0.0 is released
+  EmberApplication.reopen({
+    willDestroy() {
+      jQuery(document).off('ajaxSend', _internalPendingRequests.incrementPendingRequests);
+      jQuery(document).off('ajaxComplete', _internalPendingRequests.decrementPendingRequests);
+
+      _internalPendingRequests.clearPendingRequests();
+
+      this._super(...arguments);
+    },
+  });
+}
 
 let requests: XMLHttpRequest[];
 
